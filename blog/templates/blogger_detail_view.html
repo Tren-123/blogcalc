@@ -1,0 +1,56 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ blogger.get_username }}</h1>
+  <div style="margin-left:20px;margin-top:20px">
+    {% if blogger.blogger.avatar %}
+    <div class="image-cropper">
+    <img src="{{ blogger.blogger.avatar.url }}" alt="Avatar" class="profile-pic">
+    </div>
+    {% endif %}
+    <div class="blogger-info">
+    {% if blogger.first_name or  blogger.last_name  %}
+    Name: {{ blogger.last_name }} {{ blogger.first_name }}<br> 
+    {% endif %}
+    {% if blogger.blogger.date_of_birth %}
+      Date of birth: {{ blogger.blogger.date_of_birth }}<br> 
+    {% endif %}
+    {% if blogger.blogger.short_bio %}
+      Bio: {{ blogger.blogger.short_bio }} <br> 
+    {% endif %}</div>
+<div class="clr"></div>
+  </div>
+  <p>
+  <h4>Posts</h4>
+  <div>
+    {% if object_list %}
+    {% for post in object_list %}
+    <ul>
+    <li> <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>, {{ post.date_of_origin }}</li>
+    </ul>
+    {% endfor %}
+    <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+  
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+  
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+          {% endif %}
+      </span>
+  </div>
+    {% else %}
+    <div style="margin-left:20px;margin-top:20px">
+    This blogger hasn't written any posts yet :( </div>
+    {% endif %}
+  
+{% endblock %}
+
+
+
+
