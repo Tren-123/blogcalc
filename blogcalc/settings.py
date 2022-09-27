@@ -135,6 +135,9 @@ STATIC_URL = 'blog/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'blog/static'),
+]
 
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/

@@ -5,7 +5,8 @@
   <div style="margin-left:20px;margin-top:20px">
     {% if blogger.blogger.avatar %}
     <div class="image-cropper">
-    <img src="{{ blogger.blogger.avatar.url }}" alt="Avatar" class="profile-pic">
+    {% load static %}
+    <img src="{% static blogger.blogger.avatar.url %}" alt="Avatar" class="profile-pic">
     </div>
     {% endif %}
     <div class="blogger-info">
