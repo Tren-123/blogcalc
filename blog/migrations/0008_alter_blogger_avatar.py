@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blogger',
             name='avatar',
-            field=models.ImageField(blank=True, help_text='Upload your profile avatar', null=True, storage=blogcalc.yandex_s3_storage.ClientDocsStorage(), upload_to=''),
+            field=models.ImageField(blank=True, help_text='Upload your profile avatar', null=True, storage=blogcalc.yandex_s3_storage.UsersAvatarsStorage(), upload_to=''),
         ),
     ]
