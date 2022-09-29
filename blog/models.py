@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from blogcalc.yandex_s3_storage import ClientDocsStorage
 
 class Blogger(models.Model):
     """ Model representing a blogger info """
@@ -12,7 +12,7 @@ class Blogger(models.Model):
     short_bio = models.TextField(max_length=1000, blank=True, null=True, help_text="Enter your short bio")
     #Avatar field not completed. Should set sizes for storage images and directory for storage images.
     #It must be web sever or cloud(now it local dir), database storage only path to storage dir
-    avatar = models.ImageField(upload_to="images/avatars", blank=True, null=True, help_text="Upload your profile avatar")
+    avatar = models.ImageField(storage=ClientDocsStorage(), blank=True, null=True, help_text="Upload your profile avatar")
 
     class Meta:
         verbose_name = "Blogger info"

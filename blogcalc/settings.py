@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "blog.apps.BlogConfig",
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
+# ----Yandex s3----
+DEFAULT_FILE_STORAGE = 'blogcalc.yandex_s3_storage.ClientDocsStorage'  # path to file we created before
+YANDEX_CLIENT_DOCS_BUCKET_NAME = 'intense-depths-46072-avatars'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_S3_ENDPOINT_URL = 'https://storage.yandexcloud.net'
+AWS_S3_REGION_NAME = 'storage'
 
 try:
     from blogcalc.local_settings import *
