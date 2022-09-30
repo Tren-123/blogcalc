@@ -1,3 +1,5 @@
+import imp
+from operator import imod
 from django.shortcuts import render, get_object_or_404
 from .blog_services import get_query_with_new_n_bloggers, \
                          get_query_with_new_n_blog_posts, \
@@ -18,6 +20,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, BloggerForm, CreateUserForm
 from django.contrib.auth import authenticate, login
 from django import forms
+from blogcalc.settings import MAX_IMAGE_SIZE
 
 
 def index(request):
@@ -132,6 +135,8 @@ class BloggerUpdate(LoginRequiredMixin, generic.TemplateView):
         # if the save_blogger_info button is pressed
         elif 'save_blogger_info' in request.POST:
             if blogger_form.is_bound and blogger_form.is_valid():
+                if blogger.avatar and blogger.avatar.size > MAX_IMAGE_SIZE:
+                    return HttpResponseRedirect(reverse('blogger_update', kwargs={'pk': self.request.user.id}))
                 blogger_form.save()
                 return HttpResponseRedirect(reverse('blogger_update', kwargs={'pk': self.request.user.id}))
 
