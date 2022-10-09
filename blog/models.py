@@ -12,7 +12,7 @@ class Blogger(models.Model):
     short_bio = models.TextField(max_length=1000, blank=True, null=True, help_text="Enter your short bio")
     #Avatar field not completed. Should set sizes for storage images and directory for storage images.
     #It must be web sever or cloud(now it local dir), database storage only path to storage dir
-    avatar = models.ImageField(storage=UsersAvatarsStorage(), blank=True, null=True, help_text="Upload your profile avatar")
+    avatar = models.ImageField(storage=UsersAvatarsStorage(), blank=True, null=True, help_text="Upload your profile avatar. Max size - 1 mb")
 
     class Meta:
         verbose_name = "Blogger info"
