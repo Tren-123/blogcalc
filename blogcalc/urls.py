@@ -25,6 +25,10 @@ urlpatterns = [
     path('index/', include('blog.urls')),
     path('', RedirectView.as_view(url="index/", permanent=True)),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('api/', include('api_blog.urls')),
+    path('api', RedirectView.as_view(url="api/", permanent=True)),
+    path('api-auth/', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
     

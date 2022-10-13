@@ -50,6 +50,11 @@ class Blog_post(models.Model):
     def get_absolute_url(self):
         """ Return url to instance """
         return reverse('post', kwargs={'pk' : self.id})
+    
+    @property
+    def api_slug(self):
+        """ Returns the pposts slug for api representation. """
+        return f"id_{self.id}, {self.title}"
 
 
 class Likes_dislikes(models.Model):
