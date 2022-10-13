@@ -43,8 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "blog.apps.BlogConfig",
+    "api_blog.apps.ApiBlogConfig",
     'storages',
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [

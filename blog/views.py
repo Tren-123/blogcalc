@@ -1,5 +1,3 @@
-import imp
-from operator import imod
 from django.shortcuts import render, get_object_or_404
 from .blog_services import get_query_with_new_n_bloggers, \
                          get_query_with_new_n_blog_posts, \
